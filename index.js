@@ -15,3 +15,40 @@
 //TEMPLATE LITERALS
 //Skeleton on index.js
 //add a card for each employee using separate functions
+const inquirer = require("inquirer");
+
+const questions = [
+  {
+    type: "input",
+    name: "name",
+    message: "What is the team member's name?",
+  },
+  {
+    type: "input",
+    name: "id",
+    message: "What is the team member's ID?",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is the team member's email address?",
+  },
+];
+
+const managerQs = {
+  type: "input",
+  name: "officeNumber",
+  message: "What is the manager's office number?",
+};
+
+const engineerQs = {
+  type: "input",
+  name: "github",
+  message: "What is the team member's GitHub username?",
+};
+
+const internQs = {
+  type: "input",
+  name: "school",
+  message: "What school does this team member go to?",
+};
