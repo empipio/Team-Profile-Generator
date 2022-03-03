@@ -11,3 +11,7 @@
 //tests fit in alongside...
 
 //not sure where src file fits into this
+
+//TEMPLATE LITERALS
+//Skeleton on index.js
+//add a card for each employee using separate functions

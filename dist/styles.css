@@ -1,0 +1,23 @@
+.custom-jumbotron {
+  background-color: rebeccapurple;
+}
+
+#title-text {
+  color: antiquewhite;
+}
+
+.results {
+  display: flexbox;
+  justify-content: center;
+}
+
+.card {
+  align-items: center;
+  margin: 5px;
+}
+
+.card-header {
+  background-color: rebeccapurple;
+  color: antiquewhite;
+  font-weight: lighter;
+}
