@@ -108,7 +108,7 @@ function renderEmployees() {
       return ` <div class="card col-2">
       <h2 class="card-header card-title">${employee.name}</h2>
       <div class="card-body">
-    <h4>${role}📋</h4>
+      <h4>${role}📋</h4>
         <p><strong>ID: </strong>${employee.id}</p>
         <p>
           <strong>Email:</strong
@@ -128,6 +128,7 @@ function renderEmployees() {
           ><a href="mailto: ${employee.email}"> ${employee.email}</a>
         </p>
         <p><strong>Office Number:</strong> ${employee.github}</p>
+      </div>  
       </div>`;
     } else {
       return ` <div class="card col-2">
