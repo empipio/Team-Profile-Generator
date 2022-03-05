@@ -1,28 +1,11 @@
 //DON'T FORGET TESTS FFS
 
-//TEMPLATE LITERALS
-//Skeleton on index.js
-//add a card for each employee using separate functions
 const inquirer = require("inquirer");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const fs = require("fs");
 
-//inquirer prompt->questions, managerQ
-//use answers to construct a new manager
-//produce manager card
-//append to row in html file
-
-//ask if want to add another team member y/n
-//if yes, move to engineer/intern, if no then produce page
-
-//inquirer questions, engineerQ
-//use answers to construct a new engineer
-
-//ask again if want to add another team member y/n
-
-//once finished, html page produced
 const employees = [];
 const managerQs = [
   {
@@ -203,19 +186,6 @@ function askManagerQuestions() {
     );
     employees.push(manager);
 
-    //       const managerCard = ` <div class="card col-2">
-    //   <h2 class="card-header card-title">${manager.getName}</h2>
-    //   <div class="card-body">
-    //     <h4>${manager.getRole}</h4>
-    //     <p><strong>ID: </strong>${manager.getId}</p>
-    //     <p>
-    //       <strong>Email:</strong
-    //       ><a href="mailto: ${manager.getEmail}"> ${manager.getEmail}</a>
-    //     </p>
-    //     <p><strong>Office Number:</strong> ${manager.getOfficeNumber}</p>
-    //   </div>
-    // </div>`;
-    //       console.log(managerCard);
     nextEmployee();
   });
 }
@@ -230,19 +200,6 @@ function askEngineerQuestions() {
     );
     employees.push(engineer);
 
-    //     const engineerCard = ` <div class="card col-2">
-    // <h2 class="card-header card-title">${engineer.getName}</h2>
-    // <div class="card-body">
-    //   <h4>${engineer.getRole}</h4>
-    //   <p><strong>ID: </strong>${engineer.getId}</p>
-    //   <p>
-    //     <strong>Email:</strong
-    //     ><a href="mailto: ${engineer.getEmail}"> ${engineer.getEmail}</a>
-    //   </p>
-    //   <p><strong>Office Number:</strong> ${engineer.getGithub}</p>
-    // </div>
-    // </div>`;
-    //       console.log(engineerCard);
     nextEmployee();
   });
 }
@@ -257,19 +214,6 @@ function askInternQuestions() {
     );
     employees.push(intern);
 
-    //       const internCard = ` <div class="card col-2">
-    //   <h2 class="card-header card-title">${intern.getName}</h2>
-    //   <div class="card-body">
-    //     <h4>${intern.getRole}</h4>
-    //     <p><strong>ID: </strong>${intern.getId}</p>
-    //     <p>
-    //       <strong>Email:</strong
-    //       ><a href="mailto: ${intern.getEmail}"> ${intern.getEmail}</a>
-    //     </p>
-    //     <p><strong>Office Number:</strong> ${intern.getSchool}</p>
-    //   </div>
-    // </div>`;
-    //       console.log(internCard);
     nextEmployee();
   });
 }
@@ -279,5 +223,3 @@ function init() {
 }
 
 init();
-
-//module.exports = nextEmployee;
