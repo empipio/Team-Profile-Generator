@@ -1,12 +1,14 @@
-//DON'T FORGET TESTS FFS
-
+//IMPORTS
 const inquirer = require("inquirer");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const fs = require("fs");
 
+//empty array in which to store employee info
 const employees = [];
+
+//question arrays for the different roles
 const managerQs = [
   {
     type: "input",
@@ -74,6 +76,8 @@ const internQs = [
   },
 ];
 
+//called after the details of each employee are collected: check whether want to add another
+//if all employees added, proceed to generation of html page
 function nextEmployee() {
   inquirer
     .prompt([
@@ -97,9 +101,6 @@ function nextEmployee() {
 }
 
 function renderEmployees() {
-  //get employees[]
-  //map over each employee and return card
-  //append to html file
   console.log(employees);
   const employeeCards = employees.map((employee) => {
     const role = employee.getRole();
@@ -176,6 +177,7 @@ function renderEmployees() {
   );
 }
 
+//questions asked via command line; info stored in employees array and rendered to html once info from all employees collected
 function askManagerQuestions() {
   inquirer.prompt(managerQs).then((managerData) => {
     const manager = new Manager(
@@ -222,4 +224,5 @@ function init() {
   askManagerQuestions();
 }
 
+//initialises app
 init();
