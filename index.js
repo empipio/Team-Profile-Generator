@@ -7,6 +7,7 @@ const inquirer = require("inquirer");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
+const fs = require("fs");
 
 //inquirer prompt->questions, managerQ
 //use answers to construct a new manager
@@ -22,6 +23,74 @@ const Intern = require("./lib/intern");
 //ask again if want to add another team member y/n
 
 //once finished, html page produced
+const employees = [];
+const managerQs = [
+  {
+    type: "input",
+    name: "name",
+    message: "What is the team member's name?",
+  },
+  {
+    type: "input",
+    name: "id",
+    message: "What is the team member's ID?",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is the team member's email address?",
+  },
+  {
+    type: "input",
+    name: "officeNumber",
+    message: "What is the manager's office number?",
+  },
+];
+const engineerQs = [
+  {
+    type: "input",
+    name: "name",
+    message: "What is the team member's name?",
+  },
+  {
+    type: "input",
+    name: "id",
+    message: "What is the team member's ID?",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is the team member's email address?",
+  },
+  {
+    type: "input",
+    name: "github",
+    message: "What is the team member's GitHub username?",
+  },
+];
+const internQs = [
+  {
+    type: "input",
+    name: "name",
+    message: "What is the team member's name?",
+  },
+  {
+    type: "input",
+    name: "id",
+    message: "What is the team member's ID?",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is the team member's email address?",
+  },
+  {
+    type: "input",
+    name: "school",
+    message: "What school does this team member go to?",
+  },
+];
+
 function nextEmployee() {
   inquirer
     .prompt([
@@ -34,9 +103,9 @@ function nextEmployee() {
     ])
     .then((answer) => {
       if (answer == "engineer") {
-        Engineer.getEngineerData();
+        askEngineerQuestions();
       } else if (answer == "intern") {
-        Intern.getInternData();
+        askInternQuestions();
       } else {
         renderEmployees();
       }
@@ -44,6 +113,52 @@ function nextEmployee() {
 }
 
 function renderEmployees() {
+  //get employees[]
+  //map over each employee and return card
+  //append to html file
+  console.log(employees);
+  const employeeCards = employees.map((employee) => {
+    const role = employee.getRole();
+    if (role === "Manager") {
+      return ` <div class="card col-2">
+      <h2 class="card-header card-title">${employee.name}</h2>
+      <div class="card-body">
+    <h4>${role}📋</h4>
+        <p><strong>ID: </strong>${employee.id}</p>
+        <p>
+          <strong>Email:</strong
+          ><a href="mailto: ${employee.email}"> ${employee.email}</a>
+        </p>
+        <p><strong>Office Number:</strong> ${employee.officeNumber}</p>
+      </div>
+    </div>`;
+    } else if (role === "Engineer") {
+      return ` <div class="card col-2">
+      <h2 class="card-header card-title">${employee.name}</h2>
+      <div class="card-body">
+        <h4>${role}🔧</h4>
+        <p><strong>ID: </strong>${employee.id}</p>
+        <p>
+          <strong>Email:</strong
+          ><a href="mailto: ${employee.email}"> ${employee.email}</a>
+        </p>
+        <p><strong>Office Number:</strong> ${employee.github}</p>
+      </div>`;
+    } else {
+      return ` <div class="card col-2">
+      <h2 class="card-header card-title">${employee.name}</h2>
+      <div class="card-body">
+        <h4>${role}🎓</h4>
+        <p><strong>ID: </strong>${employee.id}</p>
+        <p>
+          <strong>Email:</strong
+          ><a href="mailto: ${employee.email}"> ${employee.email}</a>
+        </p>
+        <p><strong>Office Number:</strong> ${employee.school}</p>
+      </div>
+    </div>`;
+    }
+  });
   fs.writeFile(
     "index.html",
     `<!DOCTYPE html>
@@ -68,9 +183,7 @@ function renderEmployees() {
         </div>
       </div>
       <div class="row results col-12">
-        ${managerCard}
-        ${engineerCard}
-        ${internCard}
+       ${employeeCards.join("")}
       </div>
     </body>
   </html>
@@ -79,10 +192,91 @@ function renderEmployees() {
   );
 }
 
-async function init() {
-  Manager.GetManagerData();
+function askManagerQuestions() {
+  inquirer.prompt(managerQs).then((managerData) => {
+    const manager = new Manager(
+      managerData.name,
+      managerData.id,
+      managerData.email,
+      managerData.officeNumber
+    );
+    employees.push(manager);
+
+    //       const managerCard = ` <div class="card col-2">
+    //   <h2 class="card-header card-title">${manager.getName}</h2>
+    //   <div class="card-body">
+    //     <h4>${manager.getRole}</h4>
+    //     <p><strong>ID: </strong>${manager.getId}</p>
+    //     <p>
+    //       <strong>Email:</strong
+    //       ><a href="mailto: ${manager.getEmail}"> ${manager.getEmail}</a>
+    //     </p>
+    //     <p><strong>Office Number:</strong> ${manager.getOfficeNumber}</p>
+    //   </div>
+    // </div>`;
+    //       console.log(managerCard);
+    nextEmployee();
+  });
+}
+
+function askEngineerQuestions() {
+  inquirer.prompt(engineerQs).then((engineerData) => {
+    const engineer = new Engineer(
+      engineerData.name,
+      engineerData.id,
+      engineerData.email,
+      engineerData.github
+    );
+    employees.push(engineer);
+
+    //     const engineerCard = ` <div class="card col-2">
+    // <h2 class="card-header card-title">${engineer.getName}</h2>
+    // <div class="card-body">
+    //   <h4>${engineer.getRole}</h4>
+    //   <p><strong>ID: </strong>${engineer.getId}</p>
+    //   <p>
+    //     <strong>Email:</strong
+    //     ><a href="mailto: ${engineer.getEmail}"> ${engineer.getEmail}</a>
+    //   </p>
+    //   <p><strong>Office Number:</strong> ${engineer.getGithub}</p>
+    // </div>
+    // </div>`;
+    //       console.log(engineerCard);
+    nextEmployee();
+  });
+}
+
+function askInternQuestions() {
+  inquirer.prompt(internQs).then((internData) => {
+    const intern = new Intern(
+      internData.name,
+      internData.id,
+      internData.email,
+      internData.school
+    );
+    employees.push(intern);
+
+    //       const internCard = ` <div class="card col-2">
+    //   <h2 class="card-header card-title">${intern.getName}</h2>
+    //   <div class="card-body">
+    //     <h4>${intern.getRole}</h4>
+    //     <p><strong>ID: </strong>${intern.getId}</p>
+    //     <p>
+    //       <strong>Email:</strong
+    //       ><a href="mailto: ${intern.getEmail}"> ${intern.getEmail}</a>
+    //     </p>
+    //     <p><strong>Office Number:</strong> ${intern.getSchool}</p>
+    //   </div>
+    // </div>`;
+    //       console.log(internCard);
+    nextEmployee();
+  });
+}
+
+function init() {
+  askManagerQuestions();
 }
 
 init();
 
-module.exports = nextEmployee;
+//module.exports = nextEmployee;
