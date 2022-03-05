@@ -96,15 +96,16 @@ function nextEmployee() {
     .prompt([
       {
         type: "checkbox",
-        name: "next employee",
+        name: "nextEmployee",
         message: "do you wish to add another employee?",
         choices: ["engineer", "intern", "no, I'm finished"],
       },
     ])
     .then((answer) => {
-      if (answer == "engineer") {
+      console.log(nextEmployee);
+      if (answer.nextEmployee == "engineer") {
         askEngineerQuestions();
-      } else if (answer == "intern") {
+      } else if (answer.nextEmployee == "intern") {
         askInternQuestions();
       } else {
         renderEmployees();
@@ -160,7 +161,7 @@ function renderEmployees() {
     }
   });
   fs.writeFile(
-    "index.html",
+    "dist/index.html",
     `<!DOCTYPE html>
   <html lang="en">
     <head>
