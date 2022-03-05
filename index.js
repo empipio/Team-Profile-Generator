@@ -89,7 +89,6 @@ function nextEmployee() {
       },
     ])
     .then((answer) => {
-      console.log(nextEmployee);
       if (answer.nextEmployee == "engineer") {
         askEngineerQuestions();
       } else if (answer.nextEmployee == "intern") {
@@ -101,7 +100,6 @@ function nextEmployee() {
 }
 
 function renderEmployees() {
-  console.log(employees);
   const employeeCards = employees.map((employee) => {
     const role = employee.getRole();
     if (role === "Manager") {
@@ -127,7 +125,7 @@ function renderEmployees() {
           <strong>Email:</strong
           ><a href="mailto: ${employee.email}"> ${employee.email}</a>
         </p>
-        <p><strong>Office Number:</strong> ${employee.github}</p>
+        <p><strong>Github: </strong><a href="https://github.com/${employee.github}">${employee.github}</a></p>
       </div>  
       </div>`;
     } else {
@@ -140,7 +138,7 @@ function renderEmployees() {
           <strong>Email:</strong
           ><a href="mailto: ${employee.email}"> ${employee.email}</a>
         </p>
-        <p><strong>Office Number:</strong> ${employee.school}</p>
+        <p><strong>School:</strong> ${employee.school}</p>
       </div>
     </div>`;
     }
