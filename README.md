@@ -27,4 +27,4 @@ THEN I exit the application, and the HTML is generated
 Below is a screenshot of an example page created by the application:
 ![screenshot of example page](./src/screenshot.png)
 
-A video link to a walkthrough video of the application can be found here: https://drive.google.com/file/d/1D4f_SmLlfv5KX4CxBUHsVIGcwEEHLS5r/view
+A video link to a walkthrough video of the application can be found here: https://www.youtube.com/watch?v=GkdydR8Xt1A
